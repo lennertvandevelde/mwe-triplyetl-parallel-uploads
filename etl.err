@@ -1,0 +1,67 @@
+File:
+   lib/main.js
+Message:
+   Object does not have key 'main.ts'
+command:
+   ../.nvm/versions/node/v18.13.0/bin/node node_modules/.bin/etl lib/main.js
+Record ID:
+   1
+
+
+At middleware: file:/home/lennert/mwe-triplyetl-parallel-uploads/lib/main.js:11:9
+  [8]         } }), addSkolemIri({
+  [9]         prefix: str('https://test.com/'),
+  [10]         key: 'iri'
+>>[11]     }), triple('iri', sdo.creator, 'main.ts'), triple('iri', sdo.givenName, 'givenName'), triple('iri', sdo.familyName, 'familyName'), toTriplyDb({ account: 'meemoo', dataset: 'test', opts: { mergeGraphs: true } }));
+  [12]     return etl;
+  [13] }
+  [14] 
+
+
+Stacktrace:
+   at new AssertionError         node:internal/assert/assertion_error:452                      
+   at assertKeyExists            …ploads/node_modules/@triplyetl/etl/src/utils/asserts.ts:219  
+   at getType                    …loads/node_modules/@triplyetl/etl/src/generic/Context.ts:89  
+   at getAny                     …oads/node_modules/@triplyetl/etl/src/generic/Context.ts:165  
+   at                            …middlewares/assertions/statement/rdf/utils/getObjects.ts:32  
+   at forEach                                                                                  
+   at getObjects                 …middlewares/assertions/statement/rdf/utils/getObjects.ts:28  
+   at _triple                    …l/src/ratt/middlewares/assertions/statement/rdf/quad.ts:110  
+   at _mw                        …-uploads/node_modules/@triplyetl/etl/src/utils/index.ts:171  
+   at _mw                        …-uploads/node_modules/@triplyetl/etl/src/utils/index.ts:171  
+   at dispatch                   …uploads/node_modules/@triplyetl/etl/src/generic/Etl.ts:1290  
+   at                            …uploads/node_modules/@triplyetl/etl/src/generic/Etl.ts:1297  
+   at                            …-uploads/node_modules/@triplyetl/etl/src/utils/index.ts:173  
+   at _add                       …l/etl/src/ratt/middlewares/transformations/custom/add.ts:32  
+   at processTicksAndRejections  node:internal/process/task_queues:95                          
+   at _mw                        …-uploads/node_modules/@triplyetl/etl/src/utils/index.ts:171  
+   at dispatch                   …uploads/node_modules/@triplyetl/etl/src/generic/Etl.ts:1290  
+   at                            …uploads/node_modules/@triplyetl/etl/src/generic/Etl.ts:1297  
+   at                            …-uploads/node_modules/@triplyetl/etl/src/utils/index.ts:173  
+   at _fromJson                  …iplyetl/etl/src/generic/middlewares/sources/fromJson.ts:191  
+   at _mw                        …-uploads/node_modules/@triplyetl/etl/src/utils/index.ts:171  
+   at dispatch                   …uploads/node_modules/@triplyetl/etl/src/generic/Etl.ts:1290  
+   at run                        …uploads/node_modules/@triplyetl/etl/src/generic/Etl.ts:1029  
+   at                            …uploads/node_modules/@triplyetl/etl/src/runner/hooks.ts:220  
+
+
+Warning, the following middlewares were not executed:
+
+> file:/home/lennert/mwe-triplyetl-parallel-uploads/lib/main.js:
+  [11] }), triple('iri', sdo.creator, 'main.ts'), triple('iri', sdo.givenName, 'givenName'), triple('iri', sdo.familyName, 'familyName'), toTriplyDb({ account: 'meemoo', dataset: 'test', opts: { mergeGraphs: true } }));
+
+
+record:
+   {
+     "id": 0,
+     "givenName": "aaaaaaaaaaaaaaaa",
+     "familyName": "bbbbbbbbbbbbbbbbbbb",
+     "$recordId": 1,
+     "$environment": "Development",
+     "$fileName": "output.json",
+     "iri": {
+       "termType": "NamedNode",
+       "value": "https://test.com/.well-known/genid/a21979eb942d48dd934b1b250ff797be",
+       "validationStatus": "canonical"
+     }
+   }
